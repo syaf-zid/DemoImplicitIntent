@@ -3,13 +3,14 @@ package com.example.demoimplicitintent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnEmail;
+    Button btnEmail, btnRP;
     EditText editTextMsg;
 
     @Override
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         editTextMsg = findViewById(R.id.editTextMessage);
         btnEmail = findViewById(R.id.buttonEmail);
+        btnRP = findViewById(R.id.buttonRP);
 
         btnEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
                 // createChooser shows user a list of app that can handle this MIME type, which is, email
                 startActivity(Intent.createChooser(email, "Choose an Email client: "));
+            }
+        });
+
+        btnRP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent to display data
+                Intent rpIntent = new Intent(Intent.ACTION_VIEW);
+
+                // Set the URL to be used
+                rpIntent.setData(Uri.parse("http://www.rp.edu.sg"));
+                startActivity(rpIntent);
             }
         });
     }
